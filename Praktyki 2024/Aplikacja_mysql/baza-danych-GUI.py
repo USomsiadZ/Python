@@ -375,5 +375,5 @@ if __name__ == "__main__":
 
 
 
-# Zrobić zadanie c 2 
+#todo Zrobić zadanie c 2 
 
