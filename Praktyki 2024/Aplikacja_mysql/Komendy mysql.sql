@@ -47,32 +47,18 @@ GROUP BY do.imie, do.nazwisko
 ORDER BY zarobki DESC
 LIMIT 1
 
---zad c 1 pokolenie nowe                         
-SELECT p.Pracownik_ID, SUM(p.Zarobki) as Zarobki, sum(pr.Zarobki) as Zarobki_Malzonka
-FROM praca p
-JOIN osoba o ON o.ID = p.Pracownik_ID --*Łączy tabele osoba z praca jako o
-JOIN osoba om ON om.ID = o.Malzonek_ID --*Przyłącza tabele małżonka jako om
-JOIN praca pr ON om.ID = pr.Pracownik_ID--*Przyłącza tabele pracy małżonka
-GROUP BY p.Pracownik_ID;--* grupuje według osób
---! Kiedy sumuje się zarobki z kilku prac SUM(pp.Zarobki) to zarobki małżona stają się o ilość prac razy większe tutaj o 2
-
 
 --zad c 1 pokolenie nowe
 SELECT p.Pracownik_ID, SUM(p.Zarobki) as Zarobki, 
-(SELECT SUM(pr.Zarobki) FROM praca pr WHERE om.ID = pr.Pracownik_ID) as Zarobki_Malzonka
+(SELECT COALESCE(SUM(pr.Zarobki),0) FROM praca pr WHERE om.ID = pr.Pracownik_ID) + SUM(p.Zarobki) as Zarobki_Malzonka_i_osoby
 FROM praca p
-JOIN osoba o ON o.ID = p.Pracownik_ID 
-JOIN osoba om ON om.ID = o.Malzonek_ID 
-GROUP BY p.Pracownik_ID;
+LEFT JOIN osoba o ON o.ID = p.Pracownik_ID 
+LEFT JOIN osoba om ON om.ID = o.Malzonek_ID 
+GROUP BY p.Pracownik_ID
+ORDER BY 3
+LIMIT 1
+--! Poprostu pokazuje rodzine z najmniejszymi zarobkami a nie szuka po nazwisku
 
-
---zad c 2 pokolenie nowe
-SELECT p.Pracownik_ID, SUM(p.Zarobki) as Zarobki, 
-(SELECT SUM(pr.Zarobki) FROM praca pr WHERE om.ID = pr.Pracownik_ID) as Zarobki_Malzonka
-FROM praca p
-JOIN osoba o ON o.ID = p.Pracownik_ID 
-JOIN osoba om ON om.ID = o.Malzonek_ID 
-GROUP BY p.Pracownik_ID;
 
 
 
