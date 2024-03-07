@@ -31,7 +31,7 @@ def Menu_login_pack():
     forget_allwidget()
     pack_widgets([email_pole_logowanie, passw_pole])
 def Menu_zapytania():
-    pack_widgets([Zapytanie_A_button, Zapytanie_B_button, Zapytanie_C2_button, Zapytanie_C1_button])
+    pack_widgets([Zapytanie_A_button, Zapytanie_B_button, Zapytanie_C2_button, Zapytanie_C1_button,Zapytanie_imie_pole,Zapytanie_nazwisko_pole])
 def Menu_tworzenie_konta():
     forget_allwidget()
     pack_widgets([email_pole, passw_pole,r1,r2, imie_pole, Nazwisko_pole, Data_urodzenia_pole, telefon_pole, stworz_konto_button])
@@ -64,7 +64,7 @@ def on_enter_key(event):#Enter robi to samo co myszka
         widget_with_focus.invoke()
     except:
         return
-def on_enter_imie(event):#Autouzupełnia imie 
+def on_enter_imie_plec(event):#Autouzupełnia imie 
     male_names = ['Adam', 'Bartek', 'Cezary', 'Dawid', 'Edward']
     female_names = ['Anna', 'Beata', 'Celina', 'Dorota', 'Ewa']
 
@@ -93,6 +93,31 @@ def on_enter_email(event):#Autouzupełnia email
             email_pole_logowanie.delete(0, 'end')
             email_pole_logowanie.insert(0, emails[0])
             break
+def on_enter_imie(event):#Autouzupełnia email
+    #pobieranie emailów
+    query = f"SELECT Imie FROM `dane_osoby`"
+    cursor.execute(query)
+    result = cursor.fetchall()
+    input_text = Zapytanie_imie_pole.get().lower()
+    for emails in result:
+        print(emails)
+        if emails[0].lower().startswith(input_text):
+            Zapytanie_imie_pole.delete(0, 'end')
+            Zapytanie_imie_pole.insert(0, emails[0])
+            break
+def on_enter_nazwisko(event):#Autouzupełnia email
+    #pobieranie emailów
+    query = f"SELECT Nazwisko FROM `dane_osoby`"
+    cursor.execute(query)
+    result = cursor.fetchall()
+    input_text = Zapytanie_nazwisko_pole.get().lower()
+    for emails in result:
+        print(emails)
+        if emails[0].lower().startswith(input_text):
+            Zapytanie_nazwisko_pole.delete(0, 'end')
+            Zapytanie_nazwisko_pole.insert(0, emails[0])
+            break
+
 #funkcje     
 def logowanie():
     
@@ -249,10 +274,48 @@ def Zapytanie_C2():
     result = cursor.fetchall()
     print(result)
 def Zapytanie_C1():
-    Zapytanie_C_komenda = "SELECT o.Dane_ID,do.imie, do.nazwisko, COALESCE(p.Zarobki, 0) + COALESCE(mp.Zarobki, 0) as zarobki FROM osoba o JOIN dane_osoby do ON o.Dane_ID = do.Dane_ID LEFT JOIN osoba m on o.Malzonek_ID = m.ID LEFT JOIN praca mp on m.Praca_ID = mp.Praca_ID LEFT JOIN praca p ON o.Praca_ID = p.Praca_ID GROUP BY do.imie, do.nazwisko ORDER BY zarobki DESC LIMIT 1"
-    cursor.execute(Zapytanie_C_komenda)
+    Zapytanie_C_komenda_a = """SELECT da.Imie, convert((SUM(p.Zarobki)),UNSIGNED) as Zarobki,
+    CAST((SELECT COALESCE(SUM(pr.Zarobki),0) FROM praca pr WHERE om.ID = pr.Pracownik_ID) + SUM(p.Zarobki) AS UNSIGNED ) as Zarobki_rodziny
+    FROM praca p
+    LEFT JOIN osoba o ON o.ID = p.Pracownik_ID
+    LEFT JOIN dane_osoby da ON da.Dane_ID = o.Dane_ID
+    LEFT JOIN osoba om ON om.ID = o.Malzonek_ID """
+    a,b = 0,0
+    Zapytanie_C_komenda_b_1,Zapytanie_C_komenda_b_2 = '',''
+    imie = Zapytanie_imie_pole.get()
+    nazwisko = Zapytanie_nazwisko_pole.get()
+    imie_nazwisko = ()
+    if imie != "Imie" and imie:
+        Zapytanie_C_komenda_b_1 = "WHERE da.Imie = %s"
+        a = 1
+        imie_nazwisko += (imie,)
+
+    if nazwisko != "Nazwisko" and nazwisko:
+        Zapytanie_C_komenda_b_2 = "da.Nazwisko = %s"
+        if a == 0:  # if Zapytanie_C_komenda_b_1 is not set, add WHERE clause
+            Zapytanie_C_komenda_b_2 = "WHERE " + Zapytanie_C_komenda_b_2
+        b = 1
+        imie_nazwisko += (nazwisko,)
+
+    if a and b:
+        Zapytanie_C_komenda_b_1 = Zapytanie_C_komenda_b_1 + " and "
+
+    Zapytanie_C_komenda_b = Zapytanie_C_komenda_b_1 + Zapytanie_C_komenda_b_2
+    Zapytanie_c_komenda_c ="""
+    GROUP BY p.Pracownik_ID
+    ORDER BY 3
+    LIMIT 1
+    """
+    Zapytanie_C_komenda = Zapytanie_C_komenda_a + Zapytanie_C_komenda_b + Zapytanie_c_komenda_c
+    print(imie) #Pusta wartość to Imie lub pusta wartość
+    print(nazwisko) #Pusta wartość to Nazwisko lub pusta wartość
+    cursor.execute(Zapytanie_C_komenda, imie_nazwisko)
     result = cursor.fetchall()
     print(result)
+
+
+
+
 
 
 #Menu dodawania kontaktow
@@ -278,7 +341,7 @@ var = tk.IntVar(value=0)
 r1 = tk.Radiobutton(root, text='K', variable=var, value=1)
 r2 = tk.Radiobutton(root, text='M', variable=var, value=2)
 imie_pole = create_entry(root, 60, "Imie")
-imie_pole.bind('<Return>', on_enter_imie)
+imie_pole.bind('<Return>', on_enter_imie_plec)
 
 
 root.bind('<Return>', on_enter_key)
@@ -300,10 +363,12 @@ Menu_zapytania_button = tk.Button(root,text="Zapytania jako konto anonimowe", wi
 #Zapytania #zrobić funkcje zapytania i gui do tego
 Zapytanie_A_button = tk.Button(root,text="Znajdź imię i nazwisko osoby posiadającej największą liczbę wnucząt", width=60,command=Zapytanie_A)
 Zapytanie_B_button = tk.Button(root,text="Znajdź procent zatrudnionych na etacie i na zlecenie", width=60,command=Zapytanie_B)
-Zapytanie_C2_button = tk.Button(root,text="Znajdź rodzinę najmniej zarabiającą.2 pokolenia", width=60,command=Zapytanie_C1)
-Zapytanie_C1_button = tk.Button(root,text="Znajdź rodzinę najmniej zarabiającą.1 pokolenie", width=60,command=Zapytanie_C2)
-
-
+Zapytanie_C2_button = tk.Button(root,text="Znajdź rodzinę najmniej zarabiającą.2 pokolenia", width=60,command=Zapytanie_C2)
+Zapytanie_C1_button = tk.Button(root,text="Znajdź rodzinę najmniej zarabiającą.1 pokolenie", width=60,command=Zapytanie_C1)
+Zapytanie_imie_pole = create_entry(root, 60 , "Imie")
+Zapytanie_imie_pole.bind('<Return>', on_enter_imie)
+Zapytanie_nazwisko_pole = create_entry(root, 60 , "Nazwisko")
+Zapytanie_nazwisko_pole.bind('<Return>', on_enter_nazwisko)
 if __name__ == "__main__":
     Menu_głowne_pack()
     root.mainloop()
