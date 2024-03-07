@@ -66,6 +66,16 @@ JOIN osoba om ON om.ID = o.Malzonek_ID
 GROUP BY p.Pracownik_ID;
 
 
+--zad c 2 pokolenie nowe
+SELECT p.Pracownik_ID, SUM(p.Zarobki) as Zarobki, 
+(SELECT SUM(pr.Zarobki) FROM praca pr WHERE om.ID = pr.Pracownik_ID) as Zarobki_Malzonka
+FROM praca p
+JOIN osoba o ON o.ID = p.Pracownik_ID 
+JOIN osoba om ON om.ID = o.Malzonek_ID 
+GROUP BY p.Pracownik_ID;
+
+
+
 
 
 
