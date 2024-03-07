@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadane>
+<passy>
+    <host>localhost</host>
+    <password>toor</password>
+    <user>Admin</user>
+	<database>mydatabase</database>
+</passy>
+</metadane>
