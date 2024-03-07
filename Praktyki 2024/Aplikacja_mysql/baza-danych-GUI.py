@@ -118,7 +118,7 @@ def on_enter_nazwisko(event):#Autouzupełnia email
             Zapytanie_nazwisko_pole.insert(0, emails[0])
             break
 
-##funkcje     
+#funkcje     
 def logowanie():
     
     Menu_login_pack()
