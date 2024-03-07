@@ -375,7 +375,5 @@ if __name__ == "__main__":
 
 
 
-#skończyłeś na lini 160 na dodawaniu nowych kontaktów 
-
-#sprawdzić czy jak ktoś ma dwie prace to pokazuje prawidłowy wynik w zad 2 c
+# Zrobić zadanie c 2 
 
