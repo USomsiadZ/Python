@@ -75,7 +75,7 @@ LEFT JOIN osoba om ON om.ID = o.Malzonek_ID
 LEFT JOIN rodzic r1 ON r1.Rodzic_ID = o.ID
 LEFT JOIN osoba o1 ON o1.ID = r1.Dziecko_ID
 LEFT JOIN osoba om1 ON om1.ID = o1.Malzonek_ID
-WHERE da.Imie = da.imie and da.Nazwisko = da.Nazwisko
+WHERE da.Imie = %s and da.Nazwisko = %s
 GROUP BY p.Pracownik_ID
 ORDER BY 3
 
