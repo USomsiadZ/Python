@@ -1,7 +1,13 @@
-import tkinter as tk
-root = tk.Tk()
-root.geometry("800x600")
-root.title("Menu")
-
-
-root.mainloop()
+class Person:
+ 
+    # init method or constructor
+    def __init__(self, name):
+        self.name = name
+ 
+    # Sample Method
+    def say_hi(self):
+        print('Hello, my name is', self.name)
+ 
+ 
+p = Person('Nikhil')
+p.say_hi()
