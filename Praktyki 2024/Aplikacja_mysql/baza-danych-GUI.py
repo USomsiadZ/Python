@@ -20,41 +20,49 @@ root = tk.Tk()
 root.geometry("800x600")
 root.title("Menu")
 #funkcje tworzenia gui
-def Menu_dodawania_kontaktow():
-    forget_allwidget()
-    cofnij_button = tk.Button(root,text="cofnij",command=Menu_Zalogowanych)
-    pack_widgets([Nowy_kontakt_pole,Nowy_kontakt_button,cofnij_button])
-    return
-def Menu_głowne_pack():
-    pack_widgets([Logowanie_butt, Menu_tworzenie_konta_butt, Menu_zapytania_button])
-def Menu_login_pack():
-    forget_allwidget()
-    pack_widgets([email_pole_logowanie, passw_pole])
-def Menu_zapytania():
-    pack_widgets([Zapytanie_A_button, Zapytanie_B_button, Zapytanie_C2_button, Zapytanie_C1_button,Zapytanie_imie_pole,Zapytanie_nazwisko_pole,Zapytanie_output])
-def Menu_tworzenie_konta():
-    forget_allwidget()
-    pack_widgets([email_pole, passw_pole,r1,r2, imie_pole, Nazwisko_pole, Data_urodzenia_pole, telefon_pole, stworz_konto_button])
-def Menu_Zalogowanych():
-    forget_allwidget()
-    pack_widgets([Lista_kontaktow_button,Dodaj_kontakt_button,Lista_wpisow_button])
-    #wpisy
-def Menu_wpisy():
-    forget_allwidget()
-    wyswietl_wpisy()
-    cofnij_button = tk.Button(root, text="cofnij", command=Menu_Zalogowanych)
-    pack_widgets([Menu_nowy_wpis_button,Nowy_delete_wpis,cofnij_button])
-    return
-def Menu_nowy_wpis():
-    forget_allwidget()
-    cofnij_button = tk.Button(root, text="cofnij", command=Menu_wpisy)
-    pack_widgets([Nowy_wpis_pole,Nowy_dodaj_wpis,cofnij_button])
+class Menu:
 
+    def dodawania_kontaktow(self):
+        forget_allwidget()
+        cofnij_button = tk.Button(root,text="cofnij",command=self.Zalogowanych)
+        pack_widgets([Nowy_kontakt_pole,Nowy_kontakt_button,cofnij_button])
+
+    def głowne_pack(self):
+        pack_widgets([Logowanie_butt, Menu_tworzenie_konta_butt, Menu_zapytania_button])
+
+    def login_pack(self):
+        forget_allwidget()
+        pack_widgets([email_pole_logowanie, passw_pole])
+
+    def zapytania(self):
+        pack_widgets([Zapytanie_A_button, Zapytanie_B_button, Zapytanie_C2_button, Zapytanie_C1_button,Zapytanie_imie_pole,Zapytanie_nazwisko_pole,Zapytanie_output])
+
+    def tworzenie_konta(self):
+        forget_allwidget()
+        pack_widgets([email_pole, passw_pole,r1,r2, imie_pole, Nazwisko_pole, Data_urodzenia_pole, telefon_pole, stworz_konto_button])
+
+    def Zalogowanych(self):
+        forget_allwidget()
+        pack_widgets([Lista_kontaktow_button,Dodaj_kontakt_button,Lista_wpisow_button])
+
+    def wpisy(self):
+        forget_allwidget()
+        wyswietl_wpisy()
+        cofnij_button = tk.Button(root, text="cofnij", command=self.Zalogowanych)
+        pack_widgets([Menu_nowy_wpis_button,Nowy_delete_wpis,cofnij_button])
+        return
+
+    def nowy_wpis(self):
+        forget_allwidget()
+        cofnij_button = tk.Button(root, text="cofnij", command=self.wpisy)
+        pack_widgets([Nowy_wpis_pole,Nowy_dodaj_wpis,cofnij_button])
+    def zapytania_onlick():
+        forget_allwidget()
+        menu.zapytania()
+menu = Menu()
 #onclick
 
-def Menu_zapytania_onlick():
-    forget_allwidget()
-    Menu_zapytania()
+
 
 #Tworzenie nowych widgets
 def pack_widgets(widgets):
@@ -133,7 +141,7 @@ def on_enter_nazwisko(event):#Autouzupełnia email
 #funkcje     
 def logowanie():
     
-    Menu_login_pack()
+    menu.login_pack()
     def login(email, password): 
         password = passw_pole.get() + "sol"
         hash_password =  sha256(password.encode()).hexdigest() 
@@ -153,7 +161,7 @@ def logowanie():
         if login(email, password) == True:
             zaloguj_button.pack_forget()
             
-            Menu_Zalogowanych()
+            menu.Zalogowanych()
             global email_nick
             email_nick = email_pole.get()
 
@@ -174,7 +182,7 @@ def stworz_konto():
         print("Konto utworzone")
         global email_nick
         email_nick = email_pole.get()
-        Menu_Zalogowanych()
+        menu.Zalogowanych()
         #dodaj usuwanie starego menu
 def wyswietl_kontakty():
     def odswiez_kontakty():
@@ -233,7 +241,7 @@ def wyswietl_kontakty():
     tree.bind("<Double-1>", on_click)
     #Tworzenie przycisków
     odswiez_button = tk.Button(root, text="Odśwież", command=odswiez_kontakty)
-    cofnij_button = tk.Button(root, text="cofnij", command=Menu_Zalogowanych)
+    cofnij_button = tk.Button(root, text="cofnij", command=menu.Zalogowanych)
 
     tree.pack()    
     odswiez_button.pack()
@@ -268,7 +276,7 @@ def nowywpis():
     query = "INSERT INTO wpisy (Tworca_id, wpis) VALUES (%s, %s)"
     cursor.execute(query, (uzytkownik_id, Nowy_wpis_pole.get()))
     mydb.commit()
-    Menu_wpisy()
+    menu.wpisy()
 
 def usuwanie_wpisu():
     selected = listbox.curselection()
@@ -280,7 +288,7 @@ def usuwanie_wpisu():
             query = "DELETE FROM wpisy WHERE Tworca_id = %s AND wpis_id = %s"
             cursor.execute(query, (account_id, wpis_id))
             mydb.commit()
-            Menu_wpisy()
+            menu.wpisy()
         else:
             messagebox.showwarning("Permission Denied", "Nie masz uprawnień do usunięcia tego wpisu")
     else:
@@ -420,8 +428,8 @@ def Zapytanie_C1():
 #Menu zalogowanych
 #kontakty
 Lista_kontaktow_button = tk.Button(root,width=60,text="Lista kontaktow",command=wyswietl_kontakty)
-Lista_wpisow_button = tk.Button(root,width=60,text="Lista wpisow",command=Menu_wpisy)
-Dodaj_kontakt_button = tk.Button(root,width=60,text="Dodaj nowy kontakt",command=Menu_dodawania_kontaktow)
+Lista_wpisow_button = tk.Button(root,width=60,text="Lista wpisow",command=menu.wpisy)
+Dodaj_kontakt_button = tk.Button(root,width=60,text="Dodaj nowy kontakt",command=menu.dodawania_kontaktow)
 
 Nowy_kontakt_pole = create_entry(root, 60, "Kontakt")
 Nowy_kontakt_button = tk.Button(root,text="Dodaj",command=nowykontakt)
@@ -431,7 +439,7 @@ Nowy_kontakt_button = tk.Button(root,text="Dodaj",command=nowykontakt)
 Nowy_wpis_pole = create_entry(root, 60, "Wpis")
 Nowy_dodaj_wpis = tk.Button(root,text="Dodaj wpis",command=nowywpis)
 Nowy_delete_wpis = tk.Button(root, text="Usuń wpis", command=usuwanie_wpisu)
-Menu_nowy_wpis_button = tk.Button(root,text="Dodaj",command=Menu_nowy_wpis)
+Menu_nowy_wpis_button = tk.Button(root,text="Dodaj",command=menu.nowy_wpis)
 
 
 
@@ -462,8 +470,8 @@ stworz_konto_button = tk.Button(root,text="Stwórz konto",command=stworz_konto)
 
 #Menu główne
 Logowanie_butt = tk.Button(root, width=30,text="Logowanie",command=logowanie)
-Menu_tworzenie_konta_butt = tk.Button(root,text="Tworzenie konta", width=30,command=Menu_tworzenie_konta)
-Menu_zapytania_button = tk.Button(root,text="Zapytania jako konto anonimowe", width=30,command=Menu_zapytania_onlick)
+Menu_tworzenie_konta_butt = tk.Button(root,text="Tworzenie konta", width=30,command=menu.tworzenie_konta)
+Menu_zapytania_button = tk.Button(root,text="Zapytania jako konto anonimowe", width=30,command=menu.zapytania_onlick)
 
 #Zapytania #zrobić funkcje zapytania i gui do tego
 Zapytanie_A_button = tk.Button(root,text="Znajdź imię i nazwisko osoby posiadającej największą liczbę wnucząt", width=60,command=Zapytanie_A)
@@ -475,8 +483,10 @@ Zapytanie_imie_pole = create_entry(root, 60 , "Imie")
 Zapytanie_imie_pole.bind('<Return>', on_enter_imie)
 Zapytanie_nazwisko_pole = create_entry(root, 60 , "Nazwisko")
 Zapytanie_nazwisko_pole.bind('<Return>', on_enter_nazwisko)
+
+
 if __name__ == "__main__":
-    Menu_głowne_pack()
+    menu.głowne_pack()
     root.mainloop()
 
 

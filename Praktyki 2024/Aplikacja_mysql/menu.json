@@ -4,31 +4,31 @@
         "widgets": ["Nowy_kontakt_pole", "Nowy_kontakt_button", "cofnij_button"],
         "cofnij": "Zalogowanych"
     },
-    "Menu_głowne": {
-        "widgets": ["Logowanie_butt", "Menu_tworzenie_konta_butt", "Menu_zapytania_button"]
+    "glowne": {
+        "widgets": ["Logowanie_butt", "tworzenie_konta_butt", "zapytania_button"]
     },
-    "Menu_login": {
+    "login": {
         "widgets": ["email_pole_logowanie", "passw_pole"],
-        "cofnij": "Menu_głowne"
+        "cofnij": "głowne"
     },
-    "Menu_zapytania": {
+    "zapytania": {
         "widgets": ["Zapytanie_A_button", "Zapytanie_B_button", "Zapytanie_C2_button", "Zapytanie_C1_button", "Zapytanie_imie_pole", "Zapytanie_nazwisko_pole", "Zapytanie_output"],
-        "cofnij": "Menu_głowne"
+        "cofnij": "głowne"
     },
-    "Menu_tworzenie_konta": {
+    "tworzenie_konta": {
         "widgets": ["email_pole", "passw_pole", "r1", "r2", "imie_pole", "Nazwisko_pole", "Data_urodzenia_pole", "telefon_pole", "stworz_konto_button"],
-        "cofnij": "Menu_głowne"
+        "cofnij": "głowne"
     },
-    "Menu_Zalogowanych": {
+    "Zalogowanych": {
         "widgets": ["Lista_kontaktow_button", "Dodaj_kontakt_button", "Lista_wpisow_button"],
-        "cofnij": "Menu_login"
+        "cofnij": "login"
     },
-    "Menu_wpisy": {
-        "widgets": ["Menu_nowy_wpis_button", "Nowy_delete_wpis", "cofnij_button"],
-        "cofnij": "Menu_Zalogowanych"
+    "wpisy": {
+        "widgets": ["nowy_wpis_button", "Nowy_delete_wpis", "cofnij_button"],
+        "cofnij": "Zalogowanych"
     },
-    "Menu_nowy_wpis": {
+    "nowy_wpis": {
         "widgets": ["Nowy_wpis_pole", "Nowy_dodaj_wpis", "cofnij_button"],
-        "cofnij": "Menu_wpisy"
+        "cofnij": "wpisy"
     }
 }
