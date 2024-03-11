@@ -269,10 +269,8 @@ def Zapytanie_B():
     result = cursor.fetchall()
     print(result)
 def Zapytanie_C2():
-    Zapytanie_C_komenda = "SELECT o.Dane_ID, do.imie, do.nazwisko, COALESCE(p.Zarobki, 0) + COALESCE(mp.Zarobki, 0) + COALESCE(pr.Zarobki, 0) as zarobki FROM osoba o JOIN dane_osoby do ON o.Dane_ID = do.Dane_ID LEFT JOIN osoba m on o.Malzonek_ID = m.ID LEFT JOIN praca mp on m.Praca_ID = mp.Praca_ID LEFT JOIN praca p ON o.Praca_ID = p.Praca_ID LEFT JOIN rodzic r ON r.Rodzic_ID = o.Id LEFT JOIN osoba orr ON orr.id = r.rodzic_id LEFT JOIN Praca pr On orr.Praca_ID = pr.Praca_ID GROUP BY do.imie, do.nazwisko ORDER BY zarobki DESC LIMIT 1"
-    cursor.execute(Zapytanie_C_komenda)
-    result = cursor.fetchall()
-    print(result)
+    
+    return
 def Zapytanie_C1():
     Zapytanie_C_komenda_a = """SELECT da.Imie, convert((SUM(p.Zarobki)),UNSIGNED) as Zarobki,
     CAST((SELECT COALESCE(SUM(pr.Zarobki),0) FROM praca pr WHERE om.ID = pr.Pracownik_ID) + SUM(p.Zarobki) AS UNSIGNED ) as Zarobki_rodziny
