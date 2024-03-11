@@ -276,7 +276,7 @@ def Zapytanie_C1():
     CAST((SELECT COALESCE(SUM(pr.Zarobki),0) FROM praca pr WHERE om.ID = pr.Pracownik_ID) + SUM(p.Zarobki) AS UNSIGNED ) as Zarobki_rodziny
     FROM praca p
     LEFT JOIN osoba o ON o.ID = p.Pracownik_ID
-    LEFT JOIN dane_osoby da ON da.Dane_ID = o.Dane_ID
+    LEFT JOIN dane_osoby da ON da.Dane_ID = o.ID
     LEFT JOIN osoba om ON om.ID = o.Malzonek_ID """
     a,b = 0,0
     Zapytanie_C_komenda_b_1,Zapytanie_C_komenda_b_2 = '',''
