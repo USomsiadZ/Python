@@ -65,15 +65,19 @@ LIMIT 1
 
 --zad c 2 Pokazuje rodzine dwupokoleniową która zarabia najmniej
 SELECT da.Imie, SUM(p.Zarobki) as Zarobki, 
-(SELECT COALESCE(SUM(pr.Zarobki),0) FROM praca pr WHERE om.ID = pr.Pracownik_ID) + SUM(p.Zarobki) as Zarobki_rodziny
+(SELECT COALESCE(SUM(pr.Zarobki),0) FROM praca pr WHERE om.ID = pr.Pracownik_ID) + SUM(p.Zarobki)  +
+(SELECT COALESCE(SUM(p1.Zarobki),0) FROM praca p1 WHERE o1.ID = p1.Pracownik_ID) +
+(SELECT COALESCE(SUM(pm1.Zarobki),0) FROM praca pm1 WHERE om1.ID = pm1.Pracownik_ID) as Zarobki_rodziny
 FROM praca p
 LEFT JOIN osoba o ON o.ID = p.Pracownik_ID 
-LEFT JOIN dane_osoby da ON da.Dane_ID = o.Dane_ID
-LEFT JOIN osoba om ON om.ID = o.Malzonek_ID 
+LEFT JOIN dane_osoby da ON da.Dane_ID = o.ID
+LEFT JOIN osoba om ON om.ID = o.Malzonek_ID
+LEFT JOIN rodzic r1 ON r1.Rodzic_ID = o.ID
+LEFT JOIN osoba o1 ON o1.ID = r1.Dziecko_ID
+LEFT JOIN osoba om1 ON om1.ID = o1.Malzonek_ID
 WHERE da.Imie = %s and da.Nazwisko = %s
 GROUP BY p.Pracownik_ID
 ORDER BY 3
-LIMIT 1
 
 
 
