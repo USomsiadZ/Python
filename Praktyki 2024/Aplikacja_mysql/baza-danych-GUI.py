@@ -49,7 +49,9 @@ def Menu_nowy_wpis():
     forget_allwidget()
     cofnij_button = tk.Button(root, text="cofnij", command=Menu_wpisy)
     pack_widgets([Nowy_wpis_pole,Nowy_dodaj_wpis,cofnij_button])
+
 #onclick
+
 def Menu_zapytania_onlick():
     forget_allwidget()
     Menu_zapytania()
@@ -479,5 +481,5 @@ if __name__ == "__main__":
 
 
 
-#todo Zrobić zadanie c 2 
+
 
