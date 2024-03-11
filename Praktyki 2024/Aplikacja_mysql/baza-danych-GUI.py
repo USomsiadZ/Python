@@ -28,6 +28,7 @@ class Menu:
         pack_widgets([Nowy_kontakt_pole,Nowy_kontakt_button,cofnij_button])
 
     def głowne_pack(self):
+        forget_allwidget()
         pack_widgets([Logowanie_butt, Menu_tworzenie_konta_butt, Menu_zapytania_button])
 
     def login_pack(self):
