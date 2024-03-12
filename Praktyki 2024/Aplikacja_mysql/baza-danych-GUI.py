@@ -16,8 +16,6 @@ except:
     sys.exit()
 cursor = mydb.cursor()
 
-
-
 #GUI
 root = tk.Tk()
 root.geometry("800x600")
@@ -48,6 +46,10 @@ class Menu:
     def __init__(self):
         self.gui = GUI_function(root)
         pass
+    def kontakty(self):
+        gui.forget_allwidget()
+        func.wyswietl_kontakty()
+        pass
     def dodawania_kontaktow(self):
         cofnij_button = tk.Button(root,text="cofnij",command=self.Zalogowanych)
         self.gui.pack_widgets([Nowy_kontakt_pole,Nowy_kontakt_button,cofnij_button])
@@ -75,7 +77,7 @@ class Menu:
         self.gui.pack_widgets([Lista_kontaktow_button,Dodaj_kontakt_button,Lista_wpisow_button,Menu_zapytania_button])
 
     def wpisy(self):
-        wyswietl_wpisy()
+        func.wyswietl_wpisy()
         cofnij_button = tk.Button(root, text="cofnij", command=self.Zalogowanych)
         self.gui.pack_widgets([listbox,Menu_nowy_wpis_button,Nowy_delete_wpis,cofnij_button])
         return
@@ -143,175 +145,175 @@ class on_enter:
                 Zapytanie_nazwisko_pole.delete(0, 'end')
                 Zapytanie_nazwisko_pole.insert(0, emails[0])
                 break
-    
+class funkcja:
+    def __init__(self):
+        self.email_nick = email_nick
+    def logowanie(self):
+        
+        menu.login_pack()
+        def login(email, password): 
+            password = passw_pole.get() + "sol"
+            hash_password =  sha256(password.encode()).hexdigest() 
+            query = f"SELECT uzytkownik_id FROM `uzytkownicy` WHERE email = %s AND hasło = %s"
+            cursor.execute(query, (email, hash_password))
+            result = cursor.fetchone()
+            if result:
+                global uzytkownik_id   
+                uzytkownik_id = result[0]
+                return True
+            else:
+                return False
+
+        def try_login():
+            email = email_pole_logowanie.get()
+            password = passw_pole.get()
+            if login(email, password) == True:
+                zaloguj_button.pack_forget()
+                
+                menu.Zalogowanych()
+                global email_nick
+                email_nick = email
+
+        zaloguj_button = tk.Button(root,text="Zaloguj",command=try_login)
+        zaloguj_button.pack()
+    def stworz_konto(self):
+        
+        
+        query2 = "INSERT INTO `uzytkownicy` (`email`, `Hasło`,`Imie`, `Nazwisko`, `Data_urodzenia`, `telefon`) VALUES (%s, %s, %s, %s, %s, %s)"
+        password = passw_pole.get() + "sol"
+        hash_password =  sha256(password.encode()).hexdigest()
+        try:
+            cursor.execute(query2,(email_pole.get(),hash_password,imie_pole.get(),Nazwisko_pole.get(),Data_urodzenia_pole.get(),telefon_pole.get()))
+            mydb.commit()
+        except:
+            messagebox.showerror("Error","Konto nie mogło zostać utworzone")
+        else:
+            global email_nick
+            email_nick = email_pole.get()
+            menu.Zalogowanych()
+            #dodaj usuwanie starego menu
+    def wyswietl_kontakty(self):
+        def odswiez_kontakty():
+            # Usuń wszystkie istniejące wiersze
+            for i in tree.get_children():
+                tree.delete(i)
+
+            # Ponownie wykonaj zapytanie
+            cursor.execute(query, (email_nick,))
+            result = cursor.fetchall()
+
+            # Wypełnij drzewo nowymi danymi
+            for i, row in enumerate(result):
+                tree.insert("", i, values=(row[0], row[1], row[2]))
+
+
+        query = ("SELECT ku.email ,ku.imie,ku.nazwisko,ku.Data_urodzenia,ku.telefon FROM kontakty k "
+                "LEFT JOIN uzytkownicy u on k.uzytkownik_ID = u.Uzytkownik_ID "
+                "LEFT JOIN uzytkownicy ku on k.kontakt_ID = ku.Uzytkownik_ID "
+                "WHERE u.email = %s")
+        cursor.execute(query, (email_nick,))
+        result = cursor.fetchall()
+        print(query, (email_nick,))
+        print(result)
+        # Tworzenie tabeli
+        tree = ttk.Treeview(root, show='headings')
+        tree["columns"] = ("Email", "Imię", "Nazwisko")
+        tree.column("Email")
+        tree.column("Imię")
+        tree.column("Nazwisko")
+        tree.heading("Email", text="Email")
+        tree.heading("Imię", text="Imię")
+        tree.heading("Nazwisko", text="Nazwisko")
+
+        # Wypełnianie tabeli danymi
+        for i, row in enumerate(result):
+            tree.insert("", i, values=(row[0], row[1], row[2]))
+
+        # Obsługa kliknięcia na wiersz
+        info_box = tk.Entry(root,width=120 ,state='readonly',justify='center')
+        info_box.pack()
+        #Podczas podwójnego klikniecia 
+        def on_click(event):
+            item = tree.selection()[0]
+            values = tree.item(item,"values")
+            for row in result:
+                if row[0] == values[0]:
+                    info = f"Data urodzenia: {row[3]}, Telefon: {row[4]}"
+                    info_box.config(state='normal')
+                    info_box.delete(0, 'end')
+                    info_box.insert(0, info)
+                    info_box.config(state='readonly')
+
+        tree.bind("<Double-1>", on_click)
+        #Tworzenie przycisków
+        odswiez_button = tk.Button(root, text="Odśwież", command=odswiez_kontakty)
+        cofnij_button = tk.Button(root, text="cofnij", command=menu.Zalogowanych)
+
+        tree.pack()    
+        odswiez_button.pack()
+        cofnij_button.pack() 
+    def nowykontakt(self):
+        #Sprawdza czy dodajesz sam siebie
+        if Nowy_kontakt_pole.get() == email_nick:
+            messagebox.showerror("Error","Nie możesz dodać sam siebie")
+            return
+        
+        q_kontakt_id,q_uzytkownika_id = f"select u.uzytkownik_ID from uzytkownicy u WHERE u.email = '{Nowy_kontakt_pole.get()}'",f"select u.uzytkownik_ID from uzytkownicy u WHERE u.email = '{email_nick}'"
+
+        cursor.execute(q_kontakt_id)
+        result_kontakt = cursor.fetchone()
+        cursor.execute(q_uzytkownika_id)
+        result_uzytkownik = cursor.fetchone()
+
+        #Sprawdza czy kontakt już istnieje
+        check_query = f"SELECT * FROM `kontakty` WHERE uzytkownik_ID = {result_uzytkownik[0]} AND kontakt_ID = {result_kontakt[0]}"
+        cursor.execute(check_query)
+        check_result = cursor.fetchone()
+        if check_result:
+            messagebox.showerror("Error","Ten kontakt już istnieje")
+            return
+        #Wpisuje kontakt
+        query = f"INSERT INTO `kontakty` (uzytkownik_ID,kontakt_ID) VALUES ({result_uzytkownik[0]},{result_kontakt[0]})"
+        cursor.execute(query)
+        mydb.commit()
+    def nowywpis(self):
+        query = "INSERT INTO wpisy (Tworca_id, wpis) VALUES (%s, %s)"
+        cursor.execute(query, (uzytkownik_id, Nowy_wpis_pole.get()))
+        mydb.commit()
+        menu.wpisy()
+    def usuwanie_wpisu(self):
+        selected = listbox.curselection()
+        if selected:
+            content = listbox.get(selected)
+            account_id = int(content.split('-')[1].split(':')[0].strip())
+            if account_id == uzytkownik_id:
+                wpis_id = int(content.split('-')[0].strip())
+                query = "DELETE FROM wpisy WHERE Tworca_id = %s AND wpis_id = %s"
+                cursor.execute(query, (account_id, wpis_id))
+                mydb.commit()
+                menu.wpisy()
+            else:
+                messagebox.showwarning("Permission Denied", "Nie masz uprawnień do usunięcia tego wpisu")
+        else:
+            messagebox.showwarning("Error 420", "Nie wybrałeś żadnego wpisu")
+    def wyswietl_wpisy(self):
+        #pokazuje wpisy mysql
+        query = f"SELECT u.imie,u.nazwisko,w.wpis,w.tworca_id,w.wpis_id  FROM wpisy w LEFT JOIN uzytkownicy u on u.Uzytkownik_id = w.tworca_id GROUP BY w.wpis_id"
+        cursor.execute(query)
+        result = cursor.fetchall()
+        global listbox
+        listbox = Listbox(root,width=100)
+        for row in result:
+            listbox.insert(END, f"{row[4]}-{row[3]}:{row[0] + ' '}{row[1]},Wpis: {row[2]}")
+
 menu = Menu()
 gui = GUI_function(root)
+func = funkcja()
 #onclick
 
 
 
 #funkcje     
-def logowanie():
-    
-    menu.login_pack()
-    def login(email, password): 
-        password = passw_pole.get() + "sol"
-        hash_password =  sha256(password.encode()).hexdigest() 
-        query = f"SELECT uzytkownik_id FROM `uzytkownicy` WHERE email = %s AND hasło = %s"
-        cursor.execute(query, (email, hash_password))
-        result = cursor.fetchone()
-        if result:
-            global uzytkownik_id   
-            uzytkownik_id = result[0]
-            return True
-        else:
-            return False
-
-    def try_login():
-        email = email_pole_logowanie.get()
-        password = passw_pole.get()
-        if login(email, password) == True:
-            zaloguj_button.pack_forget()
-            
-            menu.Zalogowanych()
-            global email_nick
-            email_nick = email_pole.get()
-
-    zaloguj_button = tk.Button(root,text="Zaloguj",command=try_login)
-    zaloguj_button.pack()
-def stworz_konto():
-    
-    
-    query2 = "INSERT INTO `uzytkownicy` (`email`, `Hasło`,`Imie`, `Nazwisko`, `Data_urodzenia`, `telefon`) VALUES (%s, %s, %s, %s, %s, %s)"
-    password = passw_pole.get() + "sol"
-    hash_password =  sha256(password.encode()).hexdigest()
-    try:
-        cursor.execute(query2,(email_pole.get(),hash_password,imie_pole.get(),Nazwisko_pole.get(),Data_urodzenia_pole.get(),telefon_pole.get()))
-        mydb.commit()
-    except:
-        messagebox.showerror("Error","Konto nie mogło zostać utworzone")
-    else:
-        global email_nick
-        email_nick = email_pole.get()
-        menu.Zalogowanych()
-        #dodaj usuwanie starego menu
-def wyswietl_kontakty():
-    def odswiez_kontakty():
-        # Usuń wszystkie istniejące wiersze
-        for i in tree.get_children():
-            tree.delete(i)
-
-        # Ponownie wykonaj zapytanie
-        cursor.execute(query, (email_nick,))
-        result = cursor.fetchall()
-
-        # Wypełnij drzewo nowymi danymi
-        for i, row in enumerate(result):
-            tree.insert("", i, values=(row[0], row[1], row[2]))
-
-    gui.forget_allwidget()
-
-    query = ("SELECT ku.email ,ku.imie,ku.nazwisko,ku.Data_urodzenia,ku.telefon FROM kontakty k "
-             "LEFT JOIN uzytkownicy u on k.uzytkownik_ID = u.Uzytkownik_ID "
-             "LEFT JOIN uzytkownicy ku on k.kontakt_ID = ku.Uzytkownik_ID "
-             "WHERE u.email = %s")
-
-    cursor.execute(query, (email_nick,))
-    result = cursor.fetchall()
-
-    # Tworzenie tabeli
-    tree = ttk.Treeview(root, show='headings')
-    tree["columns"] = ("Email", "Imię", "Nazwisko")
-    tree.column("Email")
-    tree.column("Imię")
-    tree.column("Nazwisko")
-    tree.heading("Email", text="Email")
-    tree.heading("Imię", text="Imię")
-    tree.heading("Nazwisko", text="Nazwisko")
-
-    # Wypełnianie tabeli danymi
-    for i, row in enumerate(result):
-        tree.insert("", i, values=(row[0], row[1], row[2]))
-
-    # Obsługa kliknięcia na wiersz
-    info_box = tk.Entry(root,width=120 ,state='readonly',justify='center')
-    info_box.pack()
-    #Podczas podwójnego klikniecia 
-    def on_click(event):
-        item = tree.selection()[0]
-        values = tree.item(item,"values")
-        for row in result:
-            if row[0] == values[0]:
-                info = f"Data urodzenia: {row[3]}, Telefon: {row[4]}"
-                info_box.config(state='normal')
-                info_box.delete(0, 'end')
-                info_box.insert(0, info)
-                info_box.config(state='readonly')
-
-    tree.bind("<Double-1>", on_click)
-    #Tworzenie przycisków
-    odswiez_button = tk.Button(root, text="Odśwież", command=odswiez_kontakty)
-    cofnij_button = tk.Button(root, text="cofnij", command=menu.Zalogowanych)
-
-    tree.pack()    
-    odswiez_button.pack()
-    cofnij_button.pack()
-    
-def nowykontakt():
-    #Sprawdza czy dodajesz sam siebie
-    if Nowy_kontakt_pole.get() == email_nick:
-        messagebox.showerror("Error","Nie możesz dodać sam siebie")
-        return
-    
-    q_kontakt_id,q_uzytkownika_id = f"select u.uzytkownik_ID from uzytkownicy u WHERE u.email = '{Nowy_kontakt_pole.get()}'",f"select u.uzytkownik_ID from uzytkownicy u WHERE u.email = '{email_nick}'"
-
-    cursor.execute(q_kontakt_id)
-    result_kontakt = cursor.fetchone()
-    cursor.execute(q_uzytkownika_id)
-    result_uzytkownik = cursor.fetchone()
-
-    #Sprawdza czy kontakt już istnieje
-    check_query = f"SELECT * FROM `kontakty` WHERE uzytkownik_ID = {result_uzytkownik[0]} AND kontakt_ID = {result_kontakt[0]}"
-    cursor.execute(check_query)
-    check_result = cursor.fetchone()
-    if check_result:
-        messagebox.showerror("Error","Ten kontakt już istnieje")
-        return
-    #Wpisuje kontakt
-    query = f"INSERT INTO `kontakty` (uzytkownik_ID,kontakt_ID) VALUES ({result_uzytkownik[0]},{result_kontakt[0]})"
-    cursor.execute(query)
-    mydb.commit()
-def nowywpis():
-    query = "INSERT INTO wpisy (Tworca_id, wpis) VALUES (%s, %s)"
-    cursor.execute(query, (uzytkownik_id, Nowy_wpis_pole.get()))
-    mydb.commit()
-    menu.wpisy()
-
-def usuwanie_wpisu():
-    selected = listbox.curselection()
-    if selected:
-        content = listbox.get(selected)
-        account_id = int(content.split('-')[1].split(':')[0].strip())
-        if account_id == uzytkownik_id:
-            wpis_id = int(content.split('-')[0].strip())
-            query = "DELETE FROM wpisy WHERE Tworca_id = %s AND wpis_id = %s"
-            cursor.execute(query, (account_id, wpis_id))
-            mydb.commit()
-            menu.wpisy()
-        else:
-            messagebox.showwarning("Permission Denied", "Nie masz uprawnień do usunięcia tego wpisu")
-    else:
-        messagebox.showwarning("Error 420", "Nie wybrałeś żadnego wpisu")
-
-def wyswietl_wpisy():
-    #pokazuje wpisy mysql
-    query = f"SELECT u.imie,u.nazwisko,w.wpis,w.tworca_id,w.wpis_id  FROM wpisy w LEFT JOIN uzytkownicy u on u.Uzytkownik_id = w.tworca_id GROUP BY w.wpis_id"
-    cursor.execute(query)
-    result = cursor.fetchall()
-    global listbox
-    listbox = Listbox(root,width=100)
-    for row in result:
-        listbox.insert(END, f"{row[4]}-{row[3]}:{row[0] + ' '}{row[1]},Wpis: {row[2]}")
 
         
 
@@ -427,22 +429,20 @@ def Zapytanie_C1():
 
 
 
-#Menu dodawania kontaktow
 
-#Menu zalogowanych
 #kontakty
-Lista_kontaktow_button = tk.Button(root,width=60,text="Lista kontaktow",command=wyswietl_kontakty)
+Lista_kontaktow_button = tk.Button(root,width=60,text="Lista kontaktow",command=menu.kontakty)
 Lista_wpisow_button = tk.Button(root,width=60,text="Lista wpisow",command=menu.wpisy)
 Dodaj_kontakt_button = tk.Button(root,width=60,text="Dodaj nowy kontakt",command=menu.dodawania_kontaktow)
 
 #Nowy kontakt
 Nowy_kontakt_pole = gui.create_entry(60, "Kontakt")
-Nowy_kontakt_button = tk.Button(root,text="Dodaj",command=nowykontakt)
+Nowy_kontakt_button = tk.Button(root,text="Dodaj",command=func.nowykontakt)
 
 #wpisy
 Nowy_wpis_pole = gui.create_entry(60, "Wpis")
-Nowy_dodaj_wpis = tk.Button(root,text="Dodaj wpis",command=nowywpis)
-Nowy_delete_wpis = tk.Button(root, text="Usuń wpis", command=usuwanie_wpisu)
+Nowy_dodaj_wpis = tk.Button(root,text="Dodaj wpis",command=func.nowywpis)
+Nowy_delete_wpis = tk.Button(root, text="Usuń wpis", command=func.usuwanie_wpisu)
 Menu_nowy_wpis_button = tk.Button(root,text="Dodaj",command=menu.nowy_wpis)
 
 #Menu logowania
@@ -458,13 +458,13 @@ r2 = tk.Radiobutton(root, text='M', variable=var, value=2)
 Nazwisko_pole = gui.create_entry(60, "Nazwisko")
 Data_urodzenia_pole = DateEntry(root,width=57, year=2021, month=6, day=22, background='darkblue', foreground='white', borderwidth=2, date_pattern='yyyy-mm-dd')
 telefon_pole = gui.create_entry(60, "Numer telefonu")
-stworz_konto_button = tk.Button(root,text="Stwórz konto",command=stworz_konto)
+stworz_konto_button = tk.Button(root,text="Stwórz konto",command=func.stworz_konto)
 imie_pole = gui.create_entry(60, "Imie")
 imie_pole.bind('<Return>', on_enter.imie_plec)
 root.bind('<Return>', on_enter.key)
 
 #Menu główne
-Logowanie_butt = tk.Button(root, width=30,text="Logowanie",command=logowanie)
+Logowanie_butt = tk.Button(root, width=30,text="Logowanie",command=func.logowanie)
 Menu_tworzenie_konta_butt = tk.Button(root,text="Tworzenie konta", width=30,command=menu.tworzenie_konta)
 Menu_zapytania_button = tk.Button(root,text="Zapytania jako konto anonimowe", width=30,command=menu.zapytania_onlick)
 
