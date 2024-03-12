@@ -1,0 +1,1 @@
+https://github.com/USomsiadZ/Python/tree/main/Praktyki%202024/Aplikacja_mysql
