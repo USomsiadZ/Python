@@ -38,6 +38,20 @@ Funkcja handle() odpowiada za próbę połączenia się z serwerem mysql w momen
 
 	else:
 		print("IP Address does not exist in the database")
+		return
+```
+Jeśli index nie znajduje się w bazie danych to wyświetla błąd.
+```python
+	try:
+		index = str(int(self.data))[0:4]
+		query = "SELECT nazwa FROM artykul a WHERE RIGHT(CAST(indeks AS CHAR), 4) = %s"
+		cursor.execute(query, (index,))
+		result = cursor.fetchone()
+		print(result)
+		with open('output.txt', 'w') as file:
+			file.write(str(result))
+	except:
+		print("błąd")
 ```
 If result sprawdza czy skaner jest w bazie danych skanery, jeśli jest to dodaje rekord ip urządzenia i odczytany kod przez urządzenie.
 ```python

@@ -57,6 +57,7 @@ class SMWinservice(win32serviceutil.ServiceFramework):
                 except:
                     pass
                 cursor = mydb.cursor()
+                self.cursor = cursor
                 self.ip = self.client_address[0]
                 self.data = self.request.recv(1024).strip()
                 wynik = f"{self.ip}",int(self.data)
@@ -65,13 +66,26 @@ class SMWinservice(win32serviceutil.ServiceFramework):
                 cursor.execute(query, (self.ip,))
                 result = cursor.fetchone()
 
-                if result:
+
+                
+                if result and wynik[1].len:
                     print("IP Address exists in the database")
                     query="insert into skany (ip, kod) values (%s, %s)"
                     cursor.execute(query, wynik)
                     mydb.commit()
                 else:
                     print("IP Address does not exist in the database")
+                    return
+                try:
+                    index = str(int(self.data))[0:4]
+                    query = "SELECT nazwa FROM artykul a WHERE RIGHT(CAST(indeks AS CHAR), 4) = %s"
+                    self.cursor.execute(query, (index,))
+                    result = self.cursor.fetchone()
+                    print(result)
+                    with open('output.txt', 'w') as file:
+                        file.write(str(result))
+                except:
+                    print("błąd")
 
 
         def server():
