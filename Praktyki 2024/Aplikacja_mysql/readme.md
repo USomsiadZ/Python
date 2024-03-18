@@ -367,9 +367,13 @@ class funkcja:
 ```
 ## **Funkcje zapytań**
 **Zapytanie a** -  Znajdź imię i nazwisko osoby posiadającej największą liczbę wnucząt. 
+
 **Zapytanie b** - Znajdź średnią ilość pracowników zatrudnionych na umowę zlecenie i średnią ilość pracowników zatrudnionych na umowę o pracę we wszystkich firmach 
+
 **Zapytanie c1** -  Znajdź rodzinę 1 pokoleniową najmniej zarabiającą. Przedstaw imię i nazwisko dowolnej osoby z tej rodziny.
+
 **Zapytanie c2** - Znajdź rodzinę 2 pokoleniową najmniej zarabiającą. Przedstaw imię i nazwisko dowolnej osoby z tej rodziny.
+
 ```python
 class zapytanie:
     def A():
