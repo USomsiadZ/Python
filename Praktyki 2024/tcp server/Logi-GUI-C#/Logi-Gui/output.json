@@ -352,5 +352,23 @@
         "data": "593001212330000100",
         "time": "2024-03-18 14:44:48.342609",
         "result": "SZYNKA KRUCHA 'MASARNIA U JÓZEFA'"
+    },
+    {
+        "index": "4090",
+        "data": "Error",
+        "time": "2024-03-18 15:50:06.193671",
+        "result": "POLĘDWICA SOPOCKA"
+    },
+    {
+        "index": "5930",
+        "data": "Error",
+        "time": "2024-03-18 15:50:16.646537",
+        "result": "SZYNKA KRUCHA 'MASARNIA U JÓZEFA'"
+    },
+    {
+        "index": "2760",
+        "data": "Error",
+        "time": "2024-03-18 15:50:23.917474",
+        "result": "KIEŁBASA PODLASKA"
     }
 ]

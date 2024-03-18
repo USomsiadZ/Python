@@ -1,5 +1,6 @@
 {
     "python.analysis.autoImportCompletions": false,
     "python.analysis.typeCheckingMode": "off",
-    "dotnet.preferCSharpExtension": true
+    "dotnet.preferCSharpExtension": true,
+    "dotnet.defaultSolution": "Praktyki 2024/tcp server/Logi-GUI-C#/Logi-Gui/Logi-Gui.sln"
 }
