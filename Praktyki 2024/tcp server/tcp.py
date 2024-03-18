@@ -1,8 +1,4 @@
 import mysql.connector,socketserver
-
-
-
-
 class MyTCPHandler(socketserver.BaseRequestHandler):
 
     def handle(self):
@@ -31,23 +27,16 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
             mydb.commit()
         else:
             print("IP Address does not exist in the database")
-            pass
 
 
 
 def server():
     HOST, PORT = "10.2.1.63", 8555
 
-    # Create the server, binding to localhost on port 9999
     with socketserver.TCPServer((HOST, PORT), MyTCPHandler) as server:
-        # Activate the server; this will keep running until you
-        # interrupt the program with Ctrl-C
         server.serve_forever()
 
-    
-
-#server_thread = threading.Thread(target=server)
-#server_thread.start()
 
 server()
+
 

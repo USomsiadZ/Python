@@ -8,7 +8,6 @@ import mysql.connector
 import socketserver
 
 class SMWinservice(win32serviceutil.ServiceFramework):
-    '''Base class to create winservice in Python'''
 
     _svc_name_ = 'servistcp_python_name'
     _svc_display_name_ = 'servistcp_python_name_displayname'
@@ -16,9 +15,6 @@ class SMWinservice(win32serviceutil.ServiceFramework):
 
     @classmethod
     def parse_command_line(cls):
-        '''
-        ClassMethod to parse the command line
-        '''
         win32serviceutil.HandleCommandLine(cls)
 
     def __init__(self, args):
@@ -28,17 +24,11 @@ class SMWinservice(win32serviceutil.ServiceFramework):
         socket.setdefaulttimeout(60)
 
     def SvcStop(self):
-        '''
-        Called when the service is asked to stop
-        '''
         self.stop()
         self.ReportServiceStatus(win32service.SERVICE_STOP_PENDING)
         win32event.SetEvent(self.hWaitStop)
 
     def SvcDoRun(self):
-        '''
-        Called when the service is asked to start
-        '''
         self.start()
         servicemanager.LogMsg(servicemanager.EVENTLOG_INFORMATION_TYPE,
                               servicemanager.PYS_SERVICE_STARTED,
@@ -87,17 +77,12 @@ class SMWinservice(win32serviceutil.ServiceFramework):
         def server():
             HOST, PORT = "10.2.1.63", 8555
 
-            # Create the server, binding to localhost on port 9999
             with socketserver.TCPServer((HOST, PORT), MyTCPHandler) as server:
-                # Activate the server; this will keep running until you
-                # interrupt the program with Ctrl-C
                 server.serve_forever()
         pass
         server()
         while True:
             pass
 
-# entry point of the module: copy and paste into the new module
-# ensuring you are calling the "parse_command_line" of the new created class
 if __name__ == '__main__':
     SMWinservice.parse_command_line()
