@@ -1,0 +1,40 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\xxx\\Baza danych\\python\\Praktyki 2024\\tcp server\\Logi-GUI-C#\\Logi-Gui\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EE53F692-7FE4-4CBD-B0FB-C3F3F0327A8D}|Logi-Gui.csproj|c:\\users\\xxx\\baza danych\\python\\praktyki 2024\\tcp server\\logi-gui-c#\\logi-gui\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{EE53F692-7FE4-4CBD-B0FB-C3F3F0327A8D}|Logi-Gui.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Form1.cs [Projekt]",
+              "DocumentMoniker": "C:\\Users\\xxx\\Baza danych\\python\\Praktyki 2024\\tcp server\\Logi-GUI-C#\\Logi-Gui\\Form1.cs",
+              "RelativeDocumentMoniker": "Form1.cs",
+              "ToolTip": "C:\\Users\\xxx\\Baza danych\\python\\Praktyki 2024\\tcp server\\Logi-GUI-C#\\Logi-Gui\\Form1.cs [Projekt]",
+              "RelativeToolTip": "Form1.cs [Projekt]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-03-18T10:18:53.649Z",
+              "EditorCaption": " [Projekt]"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{cce594b6-0c39-4442-ba28-10c64ac7e89f}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

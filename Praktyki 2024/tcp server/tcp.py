@@ -1,4 +1,4 @@
-import mysql.connector,socketserver
+import mysql.connector,socketserver,json,datetime
 class MyTCPHandler(socketserver.BaseRequestHandler):
 
     def handle(self):
@@ -11,6 +11,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
             )
         except:
             pass
+        blad = None
         cursor = mydb.cursor()
         self.ip = self.client_address[0]
         self.data = self.request.recv(1024).strip()
@@ -27,17 +28,30 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
             mydb.commit()
         else:
             print("IP Address does not exist in the database")
-            return
+            blad = 'błąd'
         try:
             index = str(int(self.data))[0:4]
             query = "SELECT nazwa FROM artykul a WHERE RIGHT(CAST(indeks AS CHAR), 4) = %s"
             cursor.execute(query, (index,))
             result = cursor.fetchone()
             print(result)
-            with open('output.txt', 'w') as file:
-                file.write(str(result))
+            data = str(int(self.data))
+            if blad:
+                data = "Error"
+                blad = None
+            
+            result_to_save = {
+                               'index': index,
+                               'data': data,
+                               'time': str(datetime.datetime.now()),
+                               'result': result[0].replace('"', "'") if result else ''
+                             }
+            with open('C:/Users/xxx/Baza danych/python/Praktyki 2024/tcp server/Logi-GUI-C#/logi-gui/output.json', 'a', encoding='utf-8') as file:
+                file.write(json.dumps(result_to_save, ensure_ascii=False))
+                file.write("\n")   # To ensure each log is on a new line
         except:
             print("błąd")
+
 
         
 
@@ -53,7 +67,4 @@ def server():
 server()
 
 
-#gui logi w c# w forms
-#index i nazwa kod,błąd=  0 , data
-#if błąd to pokaż błąd
 
