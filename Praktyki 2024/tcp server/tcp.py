@@ -47,8 +47,9 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
                                'result': result[0].replace('"', "'") if result else ''
                              }
             with open('C:/Users/xxx/Baza danych/python/Praktyki 2024/tcp server/Logi-GUI-C#/logi-gui/output.json', 'a', encoding='utf-8') as file:
-                file.write(json.dumps(result_to_save, ensure_ascii=False))
-                file.write("\n")   # To ensure each log is on a new line
+                file.write(json.dumps([result_to_save], ensure_ascii=False))
+                file.write(",\n") 
+
         except:
             print("błąd")
 
