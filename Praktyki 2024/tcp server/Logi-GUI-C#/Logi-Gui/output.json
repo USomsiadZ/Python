@@ -1,13 +1,68 @@
 [
-    {"index": "2300", "data": "Error", "time": "2024-03-18 11:43:34.064363", "result": "KIEŁBASA LEŚNA JBB"},
-    {"index": "4090", "data": "409001216200000102", "time": "2024-03-18 11:43:35.554113", "result": "POLĘDWICA SOPOCKA"},
-    {"index": "1700", "data": "170049111450001604", "time": "2024-03-18 11:43:37.213923", "result": "KIEŁBASA ŚLĄSKA"},
-    {"index": "4090", "data": "409001216200000102", "time": "2024-03-18 11:43:38.704940", "result": "POLĘDWICA SOPOCKA"},
-    {"index": "2390", "data": "239001311490000108", "time": "2024-03-18 11:43:40.828670", "result": "KIEŁBASA Z SEREM"},
-    {"index": "2300", "data": "Error", "time": "2024-03-18 11:43:43.632381", "result": "KIEŁBASA LEŚNA JBB"},
-    {"index": "2760", "data": "276001211370001100", "time": "2024-03-18 11:43:44.918822", "result": "KIEŁBASA PODLASKA"},
-    {"index": "5930", "data": "593001212330000100", "time": "2024-03-18 11:43:46.467419", "result": "SZYNKA KRUCHA 'MASARNIA U JÓZEFA'"},
-    {"index": "2390", "data": "239001311490000108", "time": "2024-03-18 11:43:47.852129", "result": "KIEŁBASA Z SEREM"},
-    {"index": "4090", "data": "409001216200000102", "time": "2024-03-18 11:43:50.180204", "result": "POLĘDWICA SOPOCKA"}
-    ]
-    
+    {
+        "index": "2300",
+        "data": "Error",
+        "time": "2024-03-18 11:43:34.064363",
+        "result": "KIEŁBASA LEŚNA JBB"
+    },
+    {
+        "index": "4090",
+        "data": "409001216200000102",
+        "time": "2024-03-18 11:43:35.554113",
+        "result": "POLĘDWICA SOPOCKA"
+    },
+    {
+        "index": "1700",
+        "data": "170049111450001604",
+        "time": "2024-03-18 11:43:37.213923",
+        "result": "KIEŁBASA ŚLĄSKA"
+    },
+    {
+        "index": "4090",
+        "data": "409001216200000102",
+        "time": "2024-03-18 11:43:38.704940",
+        "result": "POLĘDWICA SOPOCKA"
+    },
+    {
+        "index": "2390",
+        "data": "239001311490000108",
+        "time": "2024-03-18 11:43:40.828670",
+        "result": "KIEŁBASA Z SEREM"
+    },
+    {
+        "index": "2300",
+        "data": "Error",
+        "time": "2024-03-18 11:43:43.632381",
+        "result": "KIEŁBASA LEŚNA JBB"
+    },
+    {
+        "index": "2760",
+        "data": "276001211370001100",
+        "time": "2024-03-18 11:43:44.918822",
+        "result": "KIEŁBASA PODLASKA"
+    },
+    {
+        "index": "5930",
+        "data": "593001212330000100",
+        "time": "2024-03-18 11:43:46.467419",
+        "result": "SZYNKA KRUCHA 'MASARNIA U JÓZEFA'"
+    },
+    {
+        "index": "2390",
+        "data": "239001311490000108",
+        "time": "2024-03-18 11:43:47.852129",
+        "result": "KIEŁBASA Z SEREM"
+    },
+    {
+        "index": "4090",
+        "data": "409001216200000102",
+        "time": "2024-03-18 11:43:50.180204",
+        "result": "POLĘDWICA SOPOCKA"
+    },
+    {
+        "index": "7790",
+        "data": "779001211640000105",
+        "time": "2024-03-18 13:23:28.400689",
+        "result": "SCHAB BIAŁY ' MASARNIA U JÓZEFA '"
+    }
+]

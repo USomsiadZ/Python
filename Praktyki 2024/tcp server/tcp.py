@@ -46,9 +46,15 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
                                'time': str(datetime.datetime.now()),
                                'result': result[0].replace('"', "'") if result else ''
                              }
-            with open('C:/Users/xxx/Baza danych/python/Praktyki 2024/tcp server/Logi-GUI-C#/logi-gui/output.json', 'a', encoding='utf-8') as file:
-                file.write(json.dumps([result_to_save], ensure_ascii=False))
-                file.write(",\n") 
+            filepath = 'C:/Users/xxx/Baza danych/python/Praktyki 2024/tcp server/Logi-GUI-C#/logi-gui/output.json'
+            with open(filepath, 'r', encoding='utf-8') as file:
+                data = json.load(file)
+
+            data.append(result_to_save)
+
+            with open(filepath, 'w', encoding='utf-8') as file:
+                json.dump(data, file, ensure_ascii=False, indent=4)
+
 
         except:
             print("błąd")
