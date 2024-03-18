@@ -1,4 +1,6 @@
-﻿using System;
+
+using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -26,27 +28,54 @@ namespace Logi_Gui
 
     private void load_button_Click(object sender, EventArgs e)
     {
-        string jsonFilePath = "C:\\Users\\xxx\\Baza danych\\python\\Praktyki 2024\\tcp server\\Logi-GUI-C#\\Logi-Gui\\output.json";
-        var jsonData = System.IO.File.ReadAllText(jsonFilePath);
-    
-        //Teraz trzeba utworzyć listę obiektów do przechowywania danych z pliku JSON
-        var items = JsonConvert.DeserializeObject<List<Item>>(jsonData);
-
-        foreach(var item in items)
+        lista.Items.Clear();
+        string connStr = "server=localhost;user=toor;database=skany_base;password=ZAQ!2wsx";
+        MySqlConnection conn = new MySqlConnection(connStr);
+        try
         {
-            ListViewItem listItem = new ListViewItem(new[] {item.index, item.data, item.time, item.result});
-            lista.Items.Add(listItem);
+            conn.Open();
+            string sql = "SELECT s.ip,s.kod,a.indeks,s.data,a.nazwa,s.blad FROM skany s join artykul a on a.idartykul = s.idartykul where s.blad = 0"; // Use your table name here
+            MySqlCommand cmd = new MySqlCommand(sql, conn);
+            MySqlDataReader rdr = cmd.ExecuteReader();
+    
+            var items = new List<Item>();
+            while (rdr.Read())
+            {
+                items.Add(new Item()
+                {
+                    ip = rdr[0].ToString(),
+                    kod = rdr[1].ToString(),
+                    indeks = rdr[2].ToString(),
+                    data = rdr[3].ToString(),
+                    nazwa = rdr[4].ToString(),
+    
+                });
+            }
+            rdr.Close();
+    
+            foreach(var item in items)
+            {
+                ListViewItem listItem = new ListViewItem(new[] {item.ip, item.kod, item.indeks,item.data,item.nazwa});
+                lista.Items.Add(listItem);
+            }
         }
+        catch (Exception ex)
+        {
+            Console.WriteLine(ex.ToString());
+        }
+        conn.Close();
     }
 
     //Create Item class to hold JSON Data
     public class Item
     {
-        public string index { get; set; }
+        public string ip { get; set; }
+        public string kod { get; set; }
+        public string indeks { get; set; }
         public string data { get; set; }
-        public string time { get; set; }
-        public string result { get; set; }
-    }
+        public string nazwa { get; set; }
+
+        }
 
         private void lista_SelectedIndexChanged(object sender, EventArgs e)
         {

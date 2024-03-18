@@ -85,6 +85,15 @@ ORDER BY 3
 
 
 
+select DISTINCT a.idArtykul from artykul a 
+JOIN skany s on LEFT(s.kod, 4) = RIGHT(a.Indeks, 4)
+WHERE s.kod = 23900131149000010
+
+
+
+
+
+
 
 
 

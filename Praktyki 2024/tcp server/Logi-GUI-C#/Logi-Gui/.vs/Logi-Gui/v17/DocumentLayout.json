@@ -34,7 +34,8 @@
               "RelativeToolTip": "Form1.Designer.cs",
               "ViewState": "AQIAAB4AAAAAAAAAAAAqwFwAAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-18T11:45:44.853Z"
+              "WhenOpened": "2024-03-18T11:45:44.853Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -44,7 +45,7 @@
               "RelativeDocumentMoniker": "Form1.cs",
               "ToolTip": "C:\\Users\\xxx\\Baza danych\\python\\Praktyki 2024\\tcp server\\Logi-GUI-C#\\Logi-Gui\\Form1.cs",
               "RelativeToolTip": "Form1.cs",
-              "ViewState": "AQIAABkAAAAAAAAAAAAgwCYAAAAJAAAA",
+              "ViewState": "AQIAABAAAAAAAAAAAAA1wCMAAAAYAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-18T11:06:06.692Z",
               "EditorCaption": ""
@@ -58,7 +59,8 @@
               "ToolTip": "C:\\Users\\xxx\\Baza danych\\python\\Praktyki 2024\\tcp server\\Logi-GUI-C#\\Logi-Gui\\Form1.cs [Projekt]",
               "RelativeToolTip": "Form1.cs [Projekt]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-03-18T10:18:53.649Z"
+              "WhenOpened": "2024-03-18T10:18:53.649Z",
+              "EditorCaption": " [Projekt]"
             }
           ]
         }

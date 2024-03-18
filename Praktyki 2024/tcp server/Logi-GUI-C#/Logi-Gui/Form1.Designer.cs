@@ -29,11 +29,12 @@
         private void InitializeComponent()
         {
             this.lista = new System.Windows.Forms.ListView();
-            this.load_button = new System.Windows.Forms.Button();
             this.k1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.k2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.k3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.load_button = new System.Windows.Forms.Button();
             this.k4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.k5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // lista
@@ -42,7 +43,8 @@
             this.k1,
             this.k2,
             this.k3,
-            this.k4});
+            this.k4,
+            this.k5});
             this.lista.HideSelection = false;
             this.lista.Location = new System.Drawing.Point(12, 12);
             this.lista.Name = "lista";
@@ -51,6 +53,21 @@
             this.lista.UseCompatibleStateImageBehavior = false;
             this.lista.View = System.Windows.Forms.View.Details;
             this.lista.SelectedIndexChanged += new System.EventHandler(this.lista_SelectedIndexChanged);
+            // 
+            // k1
+            // 
+            this.k1.Text = "IP";
+            this.k1.Width = 257;
+            // 
+            // k2
+            // 
+            this.k2.Text = "Kod";
+            this.k2.Width = 298;
+            // 
+            // k3
+            // 
+            this.k3.Text = "Indeks";
+            this.k3.Width = 186;
             // 
             // load_button
             // 
@@ -62,25 +79,15 @@
             this.load_button.UseVisualStyleBackColor = true;
             this.load_button.Click += new System.EventHandler(this.load_button_Click);
             // 
-            // k1
-            // 
-            this.k1.Text = "Index";
-            this.k1.Width = 257;
-            // 
-            // k2
-            // 
-            this.k2.Text = "Numer";
-            this.k2.Width = 298;
-            // 
-            // k3
-            // 
-            this.k3.Text = "Data";
-            this.k3.Width = 346;
-            // 
             // k4
             // 
-            this.k4.Text = "nazwa";
-            this.k4.Width = 316;
+            this.k4.Text = "data";
+            this.k4.Width = 240;
+            // 
+            // k5
+            // 
+            this.k5.Text = "Nazwa";
+            this.k5.Width = 226;
             // 
             // Form1
             // 
@@ -101,8 +108,9 @@
         private System.Windows.Forms.ColumnHeader k1;
         private System.Windows.Forms.ColumnHeader k2;
         private System.Windows.Forms.ColumnHeader k3;
-        private System.Windows.Forms.ColumnHeader k4;
         private System.Windows.Forms.Button load_button;
+        private System.Windows.Forms.ColumnHeader k4;
+        private System.Windows.Forms.ColumnHeader k5;
     }
 }
 
