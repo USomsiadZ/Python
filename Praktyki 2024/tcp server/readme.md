@@ -1,8 +1,9 @@
-**Server tcp zapisujący odczyt z skanera w bazie danych**
+# **Server tcp zapisujący odczyt z skanera w bazie danych**
+## importuje mysql.connector (odpowiada za łączenie z bazą danych mysql) i socketserver (tworzenie serwera tcp).
 ```python
 import mysql.connector,socketserver
 ```
-importuje mysql.connector (odpowiada za łączenie z bazą danych mysql) i socketserver (tworzenie serwera tcp).
+## Funkcja handle() odpowiada za próbę połączenia się z serwerem mysql w momencie otrzymania informacji.
 ```python
 class MyTCPHandler(socketserver.BaseRequestHandler):
 	def handle(self):
@@ -17,7 +18,8 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
 	except:
 		print('Nie udało się połączyć')
 ```
-Funkcja handle() odpowiada za próbę połączenia się z serwerem mysql w momencie otrzymania informacji.
+### If result sprawdza czy skaner jest w bazie danych skanery, jeśli jest to dodaje rekord ip urządzenia i odczytany kod przez urządzenie.
+### Jeśli index nie znajduje się w bazie danych to wyświetla błąd.
 ```python
 
 	cursor = mydb.cursor()
@@ -40,7 +42,7 @@ Funkcja handle() odpowiada za próbę połączenia się z serwerem mysql w momen
 		print("IP Address does not exist in the database")
 		return
 ```
-Jeśli index nie znajduje się w bazie danych to wyświetla błąd.
+
 ```python
 	try:
 		index = str(int(self.data))[0:4]
@@ -53,22 +55,20 @@ Jeśli index nie znajduje się w bazie danych to wyświetla błąd.
 	except:
 		print("błąd")
 ```
-If result sprawdza czy skaner jest w bazie danych skanery, jeśli jest to dodaje rekord ip urządzenia i odczytany kod przez urządzenie.
+## Uruchomienie serwera.
 ```python
 def server():
 	HOST, PORT = "10.2.1.63", 8555
 	with socketserver.TCPServer((HOST, PORT), MyTCPHandler) as server:
 	server.serve_forever()
-
-  
 server()
 ```
-Funkcja server() uruchamia server tcp.
 
 
 
-**Włączenie servera tcp jako usługe w windows**
-Importowanie potrzebnych funkcji
+
+# **Włączenie servera tcp jako usługe w windows.**
+## Importowanie potrzebnych funkcji
 ```python
 import  socket
 import  sys
@@ -78,42 +78,28 @@ import  win32event
 import  win32service
 
 ```
+## Ustawienie nazwy usługi 
 ```python
 class  SMWinservice(win32serviceutil.ServiceFramework):
 	_svc_name_  =  'servistcp_python_name'
 	_svc_display_name_  =  'servistcp_python_name_displayname'
 	_svc_description_  =  'Jakos dziala'
-
-  
-
 	def  parse_command_line(cls):
-
 		win32serviceutil.HandleCommandLine(cls)
 	def  __init__(self, args):
-
 		self.proc  =  None
-
 		win32serviceutil.ServiceFramework.__init__(self, args)
-
 		self.hWaitStop  =  win32event.CreateEvent(None, 0, 0, None)
-
 		socket.setdefaulttimeout(60)
-
-  
 ```
-**Svcstop** jest uruchamiana podczas zapytania zakończenia procesu
+## **Svcstop** jest uruchamiana podczas zapytania zakończenia procesu
 ```python
 	def  SvcStop(self):
-
 	self.stop()
-
 	self.ReportServiceStatus(win32service.SERVICE_STOP_PENDING)
-
 	win32event.SetEvent(self.hWaitStop)
-
-  
 ```
-**SvcDoRun(self)** jest uruchamiana podczas zapytania uruchomienia 
+## **SvcDoRun(self)** jest uruchamiana podczas zapytania uruchomienia 
 ```python
 	def  SvcDoRun(self):
 		self.start()
@@ -127,12 +113,12 @@ class  SMWinservice(win32serviceutil.ServiceFramework):
 			self.isrunning  =  False
 			sys.exit()
 ```
-Główny kod serwera tcp.
+## Główny kod serwera tcp.
 ```python
 	def  main(self):
 		#Tutaj znajduje się kod servera tcp zamieszczony powyżej
 ```
-Jeśli aplikacja jest uruchamiana bezpośrednio to wywołuje funkcje SMWinservice.parse_command_line()
+## Jeśli aplikacja jest uruchamiana bezpośrednio to wywołuje funkcje SMWinservice.parse_command_line()
 ```python
 if  __name__  ==  '__main__':
 	SMWinservice.parse_command_line()
@@ -140,7 +126,7 @@ if  __name__  ==  '__main__':
 
 
 
-**Diagram aplikacji**
+## **Diagram aplikacji**
 ```mermaid
 graph TB
     A[Start] --> B(Serwer nasłuchuje)

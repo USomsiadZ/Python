@@ -167,11 +167,11 @@ class on_enter:
                 break
 ```
 ## **Funkcje**
-**Logowanie**
-**Tworzenie konta**
-**Wyświetlanie i dodawanie kontaktów**
-**Wyświetlanie wpisów**
-**Dodawanie, edytowania i usuwania wpisów**
+- **Logowanie**
+- **Tworzenie konta**
+- **Wyświetlanie i dodawanie kontaktów**
+- **Wyświetlanie wpisów**
+- **Dodawanie, edytowania i usuwania wpisów**
 ```python
 class funkcja:
     def __init__(self):
