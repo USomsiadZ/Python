@@ -89,10 +89,6 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
                 print("błąd")  # Wydrukowanie informacji o błędzie
 
 
-
-
-
-
 def server():
     HOST, PORT = "10.2.1.63", 8555  # Ustawienie hosta i portu
 

@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "FG1ye2ZLfXpZCVy6MDXYSjFVmJPh6LjNN3Z9h006K6BlgWgm8jrdZudr43Lqe6iyDv0yFGYlyBmv9Ivfe2TS8g==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\xxx\\Baza danych\\python\\Praktyki 2024\\Baza-danych-GUI-C#\\Baza-danych-GUI-C#.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\xxx\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\7.0.1\\microsoft.extensions.logging.abstractions.7.0.1.nupkg.sha512",
+    "C:\\Users\\xxx\\.nuget\\packages\\mysqlconnector\\2.3.5\\mysqlconnector.2.3.5.nupkg.sha512"
+  ],
+  "logs": []
+}
