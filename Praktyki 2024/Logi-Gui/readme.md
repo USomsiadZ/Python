@@ -1,5 +1,6 @@
 
-// Importowanie niezbędnych bibliotek
+## Importowanie niezbędnych bibliotek
+```sharp
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
@@ -11,8 +12,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Newtonsoft.Json;
-
-// Deklaracja przestrzeni nazw
+```
+## Deklaracja przestrzeni nazw
+```csharp
 namespace Logi_Gui
 {
     // Definicja klasy Form1
@@ -25,17 +27,16 @@ namespace Logi_Gui
             InitializeComponent();
         }
 
-        // Metoda wywoływana podczas ładowania formularza
         // Metoda wywoływana po kliknięciu przycisku load_button
         private void load_button_Click(object sender, EventArgs e)
         {
             // Czyszczenie listy przed dodaniem nowych elementów
             lista.Items.Clear();
-
-            // Dane do połączenia z bazą danych
-            string connStr = "server=localhost;user=toor;database=skany_base;password=ZAQ!2wsx";
-
-            // Utworzenie nowego połączenia z bazą danych
+```
+##  Utworzenie nowego połączenia z bazą danych
+```csharp
+			// Dane do połączenia z bazą danych
+            string connStr = #dane";
             MySqlConnection conn = new MySqlConnection(connStr);
 
             try
@@ -90,8 +91,9 @@ namespace Logi_Gui
             // Zamknięcie połączenia z bazą danych
             conn.Close();
         }
-
-        // Definicja klasy Item do przechowywania danych JSON
+```
+## Definicja klasy Item do przechowywania danych JSON
+```csharp
         public class Item
         {
             public string ip { get; set; }
@@ -105,3 +107,7 @@ namespace Logi_Gui
 
     }
 }
+```
+![screen shot](image/scr.png)
+
+

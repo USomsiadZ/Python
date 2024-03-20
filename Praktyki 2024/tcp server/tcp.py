@@ -75,7 +75,7 @@ class MyTCPHandler(socketserver.BaseRequestHandler):
                                 'time': str(datetime.datetime.now()),
                                 'result': result[0].replace('"', "'") if result else ''
                                 }
-                filepath = 'C:/Users/xxx/Baza danych/python/Praktyki 2024/tcp server/Logi-GUI-C#/logi-gui/output.json'  # Ścieżka do pliku
+                filepath = 'C:/Users/xxx/Baza danych/python/Praktyki 2024/tcp server/output.json'  # Ścieżka do pliku
                 with open(filepath, 'r', encoding='utf-8') as file:  # Otwarcie pliku do odczytu
                     data = json.load(file)  # Wczytanie danych z pliku
 

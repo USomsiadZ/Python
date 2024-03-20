@@ -1,0 +1,15 @@
+C:\Users\xxx\Baza danych\python\Praktyki 2024\Baza-danych-GUI-C#\obj\Debug\net8.0\app.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\xxx\Baza danych\python\Praktyki 2024\Baza-danych-GUI-C#\obj\Debug\net8.0\app.AssemblyInfoInputs.cache
+C:\Users\xxx\Baza danych\python\Praktyki 2024\Baza-danych-GUI-C#\obj\Debug\net8.0\app.AssemblyInfo.cs
+C:\Users\xxx\Baza danych\python\Praktyki 2024\Baza-danych-GUI-C#\obj\Debug\net8.0\app.csproj.CoreCompileInputs.cache
+C:\Users\xxx\Baza danych\python\Praktyki 2024\Baza-danych-GUI-C#\obj\Debug\net8.0\app.sourcelink.json
+C:\Users\xxx\Baza danych\python\Praktyki 2024\Baza-danych-GUI-C#\bin\Debug\net8.0\app.exe
+C:\Users\xxx\Baza danych\python\Praktyki 2024\Baza-danych-GUI-C#\bin\Debug\net8.0\app.deps.json
+C:\Users\xxx\Baza danych\python\Praktyki 2024\Baza-danych-GUI-C#\bin\Debug\net8.0\app.runtimeconfig.json
+C:\Users\xxx\Baza danych\python\Praktyki 2024\Baza-danych-GUI-C#\bin\Debug\net8.0\app.dll
+C:\Users\xxx\Baza danych\python\Praktyki 2024\Baza-danych-GUI-C#\bin\Debug\net8.0\app.pdb
+C:\Users\xxx\Baza danych\python\Praktyki 2024\Baza-danych-GUI-C#\obj\Debug\net8.0\app.dll
+C:\Users\xxx\Baza danych\python\Praktyki 2024\Baza-danych-GUI-C#\obj\Debug\net8.0\refint\app.dll
+C:\Users\xxx\Baza danych\python\Praktyki 2024\Baza-danych-GUI-C#\obj\Debug\net8.0\app.pdb
+C:\Users\xxx\Baza danych\python\Praktyki 2024\Baza-danych-GUI-C#\obj\Debug\net8.0\app.genruntimeconfig.cache
+C:\Users\xxx\Baza danych\python\Praktyki 2024\Baza-danych-GUI-C#\obj\Debug\net8.0\ref\app.dll

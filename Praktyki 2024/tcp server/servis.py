@@ -109,7 +109,7 @@ class SMWinservice(win32serviceutil.ServiceFramework):
                                     'time': str(datetime.datetime.now()),
                                     'result': result[0].replace('"', "'") if result else ''
                                     }
-                    filepath = 'C:/Users/xxx/Baza danych/python/Praktyki 2024/tcp server/Logi-GUI-C#/logi-gui/output.json'
+                    filepath = 'C:/Users/xxx/Baza danych/python/Praktyki 2024/tcp server/output.json'
                     with open(filepath, 'r', encoding='utf-8') as file:
                         data = json.load(file)
                     data.append(result_to_save)

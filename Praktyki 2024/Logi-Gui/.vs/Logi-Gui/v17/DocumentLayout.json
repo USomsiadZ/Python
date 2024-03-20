@@ -1,18 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\xxx\\Baza danych\\python\\Praktyki 2024\\tcp server\\Logi-GUI-C#\\Logi-Gui\\",
+  "WorkspaceRootPath": "C:\\Users\\xxx\\Baza danych\\python\\Praktyki 2024\\Logi-Gui\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EE53F692-7FE4-4CBD-B0FB-C3F3F0327A8D}|Logi-Gui.csproj|C:\\Users\\xxx\\Baza danych\\python\\Praktyki 2024\\tcp server\\Logi-GUI-C#\\Logi-Gui\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{EE53F692-7FE4-4CBD-B0FB-C3F3F0327A8D}|Logi-Gui.csproj|c:\\users\\xxx\\baza danych\\python\\praktyki 2024\\logi-gui\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EE53F692-7FE4-4CBD-B0FB-C3F3F0327A8D}|Logi-Gui.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EE53F692-7FE4-4CBD-B0FB-C3F3F0327A8D}|Logi-Gui.csproj|C:\\Users\\xxx\\Baza danych\\python\\Praktyki 2024\\Logi-Gui\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{EE53F692-7FE4-4CBD-B0FB-C3F3F0327A8D}|Logi-Gui.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EE53F692-7FE4-4CBD-B0FB-C3F3F0327A8D}|Logi-Gui.csproj|C:\\Users\\xxx\\Baza danych\\python\\Praktyki 2024\\tcp server\\Logi-GUI-C#\\Logi-Gui\\form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EE53F692-7FE4-4CBD-B0FB-C3F3F0327A8D}|Logi-Gui.csproj|solutionrelative:form1.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EE53F692-7FE4-4CBD-B0FB-C3F3F0327A8D}|Logi-Gui.csproj|c:\\users\\xxx\\baza danych\\python\\praktyki 2024\\tcp server\\logi-gui-c#\\logi-gui\\form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{EE53F692-7FE4-4CBD-B0FB-C3F3F0327A8D}|Logi-Gui.csproj|solutionrelative:form1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{EE53F692-7FE4-4CBD-B0FB-C3F3F0327A8D}|Logi-Gui.csproj|C:\\Users\\xxx\\Baza danych\\python\\Praktyki 2024\\Logi-Gui\\Form1.Designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{EE53F692-7FE4-4CBD-B0FB-C3F3F0327A8D}|Logi-Gui.csproj|solutionrelative:Form1.Designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -22,41 +22,41 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Form1.Designer.cs",
-              "DocumentMoniker": "C:\\Users\\xxx\\Baza danych\\python\\Praktyki 2024\\tcp server\\Logi-GUI-C#\\Logi-Gui\\Form1.Designer.cs",
+              "DocumentMoniker": "C:\\Users\\xxx\\Baza danych\\python\\Praktyki 2024\\Logi-Gui\\Form1.Designer.cs",
               "RelativeDocumentMoniker": "Form1.Designer.cs",
-              "ToolTip": "C:\\Users\\xxx\\Baza danych\\python\\Praktyki 2024\\tcp server\\Logi-GUI-C#\\Logi-Gui\\Form1.Designer.cs",
+              "ToolTip": "C:\\Users\\xxx\\Baza danych\\python\\Praktyki 2024\\Logi-Gui\\Form1.Designer.cs",
               "RelativeToolTip": "Form1.Designer.cs",
-              "ViewState": "AQIAAFYAAAAAAAAAAAAqwGkAAAAjAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-18T11:45:44.853Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "Form1.cs",
-              "DocumentMoniker": "C:\\Users\\xxx\\Baza danych\\python\\Praktyki 2024\\tcp server\\Logi-GUI-C#\\Logi-Gui\\Form1.cs",
+              "DocumentMoniker": "C:\\Users\\xxx\\Baza danych\\python\\Praktyki 2024\\Logi-Gui\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
-              "ToolTip": "C:\\Users\\xxx\\Baza danych\\python\\Praktyki 2024\\tcp server\\Logi-GUI-C#\\Logi-Gui\\Form1.cs",
+              "ToolTip": "C:\\Users\\xxx\\Baza danych\\python\\Praktyki 2024\\Logi-Gui\\Form1.cs",
               "RelativeToolTip": "Form1.cs",
-              "ViewState": "AQIAAEsAAAAAAAAAAAA3wFcAAAAJAAAA",
+              "ViewState": "AQIAAAwAAAAAAAAAAAAAACMAAAAgAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-18T11:06:06.692Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Form1.cs [Projekt]",
-              "DocumentMoniker": "C:\\Users\\xxx\\Baza danych\\python\\Praktyki 2024\\tcp server\\Logi-GUI-C#\\Logi-Gui\\Form1.cs",
+              "DocumentMoniker": "C:\\Users\\xxx\\Baza danych\\python\\Praktyki 2024\\Logi-Gui\\Form1.cs",
               "RelativeDocumentMoniker": "Form1.cs",
-              "ToolTip": "C:\\Users\\xxx\\Baza danych\\python\\Praktyki 2024\\tcp server\\Logi-GUI-C#\\Logi-Gui\\Form1.cs [Projekt]",
+              "ToolTip": "C:\\Users\\xxx\\Baza danych\\python\\Praktyki 2024\\Logi-Gui\\Form1.cs [Projekt]",
               "RelativeToolTip": "Form1.cs [Projekt]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-03-18T10:18:53.649Z",
