@@ -32,9 +32,10 @@
             this.k1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.k2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.k3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.load_button = new System.Windows.Forms.Button();
             this.k4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.k5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.k6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.load_button = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lista
@@ -44,7 +45,8 @@
             this.k2,
             this.k3,
             this.k4,
-            this.k5});
+            this.k5,
+            this.k6});
             this.lista.HideSelection = false;
             this.lista.Location = new System.Drawing.Point(12, 12);
             this.lista.Name = "lista";
@@ -52,7 +54,6 @@
             this.lista.TabIndex = 0;
             this.lista.UseCompatibleStateImageBehavior = false;
             this.lista.View = System.Windows.Forms.View.Details;
-            this.lista.SelectedIndexChanged += new System.EventHandler(this.lista_SelectedIndexChanged);
             // 
             // k1
             // 
@@ -62,12 +63,27 @@
             // k2
             // 
             this.k2.Text = "Kod";
-            this.k2.Width = 298;
+            this.k2.Width = 220;
             // 
             // k3
             // 
             this.k3.Text = "Indeks";
             this.k3.Width = 186;
+            // 
+            // k4
+            // 
+            this.k4.Text = "data";
+            this.k4.Width = 187;
+            // 
+            // k5
+            // 
+            this.k5.Text = "Nazwa";
+            this.k5.Width = 226;
+            // 
+            // k6
+            // 
+            this.k6.Text = "Czy jest błędne";
+            this.k6.Width = 133;
             // 
             // load_button
             // 
@@ -79,16 +95,6 @@
             this.load_button.UseVisualStyleBackColor = true;
             this.load_button.Click += new System.EventHandler(this.load_button_Click);
             // 
-            // k4
-            // 
-            this.k4.Text = "data";
-            this.k4.Width = 240;
-            // 
-            // k5
-            // 
-            this.k5.Text = "Nazwa";
-            this.k5.Width = 226;
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -97,7 +103,7 @@
             this.Controls.Add(this.load_button);
             this.Controls.Add(this.lista);
             this.Name = "Form1";
-            this.Text = "nazwa";
+            this.Text = "Gui-logi";
             this.ResumeLayout(false);
 
         }
@@ -111,6 +117,7 @@
         private System.Windows.Forms.Button load_button;
         private System.Windows.Forms.ColumnHeader k4;
         private System.Windows.Forms.ColumnHeader k5;
+        private System.Windows.Forms.ColumnHeader k6;
     }
 }
 

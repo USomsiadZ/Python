@@ -34,7 +34,7 @@ namespace Logi_Gui
         try
         {
             conn.Open();
-            string sql = "SELECT s.ip,s.kod,a.indeks,s.data,a.nazwa,s.blad FROM skany s join artykul a on a.idartykul = s.idartykul where s.blad = 0"; // Use your table name here
+            string sql = "SELECT s.ip,s.kod,a.indeks,s.data,a.nazwa,s.blad FROM skany s left join artykul a on a.idartykul = s.idartykul"; // Use your table name here
             MySqlCommand cmd = new MySqlCommand(sql, conn);
             MySqlDataReader rdr = cmd.ExecuteReader();
     
@@ -43,19 +43,21 @@ namespace Logi_Gui
             {
                 items.Add(new Item()
                 {
-                    ip = rdr[0].ToString(),
-                    kod = rdr[1].ToString(),
-                    indeks = rdr[2].ToString(),
-                    data = rdr[3].ToString(),
-                    nazwa = rdr[4].ToString(),
-    
+                    ip = rdr["ip"] == DBNull.Value ? null : rdr["ip"].ToString(),
+                    kod = rdr["kod"] == DBNull.Value ? null : rdr["kod"].ToString(),
+                    indeks = rdr["indeks"] == DBNull.Value ? null : rdr["indeks"].ToString(),
+                    data = rdr["data"] == DBNull.Value ? null : rdr["data"].ToString(),
+                    nazwa = rdr["nazwa"] == DBNull.Value ? null : rdr["nazwa"].ToString(),
+                    blad = rdr[5].ToString(),
+
+
                 });
             }
             rdr.Close();
     
             foreach(var item in items)
             {
-                ListViewItem listItem = new ListViewItem(new[] {item.ip, item.kod, item.indeks,item.data,item.nazwa});
+                ListViewItem listItem = new ListViewItem(new[] {item.ip, item.kod, item.indeks,item.data,item.nazwa,item.blad});
                 lista.Items.Add(listItem);
             }
         }
@@ -74,6 +76,9 @@ namespace Logi_Gui
         public string indeks { get; set; }
         public string data { get; set; }
         public string nazwa { get; set; }
+        public string blad { get; set; }
+
+
 
         }
 
