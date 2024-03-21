@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Baza-danych-GUI-C#")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0f9a132ae0524a8b7855397689a20adada797c4b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+12589843a1eea9e2617f69065fcf4fb8562064ff")]
 [assembly: System.Reflection.AssemblyProductAttribute("Baza-danych-GUI-C#")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Baza-danych-GUI-C#")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
