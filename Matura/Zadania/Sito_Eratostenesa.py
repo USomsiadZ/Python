@@ -17,13 +17,21 @@ def sieve_of_eratosthenes(n:int) -> list[bool] | list[int]:
 
 
     return  is_prime
+def prime(*numbers:int):
+    sieve_list = sieve_of_eratosthenes(max(numbers))
+    prime_numbers = []
+    for number in numbers:
+        if sieve_list[number]:
+            prime_numbers += [True]
+        else:
+            prime_numbers += [False]
+    return numbers,prime_numbers
+
 def main() -> None:
-    #print(sieve_of_eratosthenes(100))
-    c = 0
-    sieve_list = sieve_of_eratosthenes(100)
-    for m in sieve_list:
-        print(c,":", m)
-        c = c + 1
+    num,num_bool = prime(5,10,100,2,1,15)
+    for m in range(len(num)):
+        print(num[m],":",num_bool[m])
+
 if __name__ == "__main__":
     main()
 
